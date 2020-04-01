@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:th="http://www.w3.org/1999/xhtml">
+	<head lang="en">
+		<meta charset="utf-8">
+		<title>管理员登录</title>
+		<script th:src="@{/js/jquery-3.4.1.min.js}"></script>
+
+		<link rel="stylesheet" type="text/css" th:href="@{/bootstrap/css/bootstrap.min.css}"/>
+		<link rel="stylesheet" type="text/css" th:href="@{/css/admin.css}"/>
+		<link rel="stylesheet" type="text/css" th:href="@{/css/a.css}"/>
+		<link rel="stylesheet" type="text/css" th:href="@{/css/teacherindex.css}"/>
+		<!-- 加载 Bootstrap 的所有 JavaScript 插件。你也可以根据需要只加载单个插件。 -->
+		<script th:src="@{/bootstrap/js/bootstrap.min.js}"></script>
+		<style>
+			
+		</style>
+	</head>
+	<body>
+		<div style="height: 754px;">
+			<div class="header">
+				<img src="images/ecut-logo.jpg" alt="logo" class="logo">
+				<h1>东华理工大学教学评价系统 </h1>
+				<div class="login">
+					<span id="loginuser">
+
+					</span>
+					<button type="button" id="userId" style="display: none"></button>
+					<button type="button" id="exit">退出</button>
+				</div>
+			</div>
+			<div style="height: 20px;"></div>
+
+			<div class="content container-fluid b">
+				<div class="row b">
+
+					<div class="col-md-2 b" >
+						<ul class="nav nav-pills nav-stacked" id="list-title">
+							<button class="btn btn-default list-item list-item-checked" style="display: none;">修改密码</button>
+							<li class="left-title">个人管理</li>
+							<li role="presentation"><button class="btn btn-default list-item" id="mes">个人信息</button></li>
+							<li role="presentation"><button class="btn btn-default list-item">修改密码</button></li>
+							<li class="left-title">评教管理</li>
+							<li role="presentation"><button class="btn btn-default list-item" id="showEva">查看评价</button></li>
+						</ul>
+					</div>
+
+					<div class="col-md-10 b">
+						<div id="content-box">
+							<div class="contents contents-checked">
+								<br/><br/><br/><br/><br/><br/><br/><br/>
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+								<font size="8">欢迎使用东华理工大学教学质量评价系统！</font>
+							</div>
+							<div class="contents">
+								<div class="add-student">
+									<span style="margin-left: 230px;font-size: 19px;"><b>个人信息查询</b></span></span>
+									<div>
+										<form>
+											<input type="text" class="dialog-text" id="teaId" style="display: none">
+											<div class="dialog-div">
+												<label class="dialog-label">工号</label>
+												<input type="text" maxlength='5' class="dialog-text" id="teaNumberId">
+											</div>
+											<div class="dialog-div">
+												<label class="dialog-label">姓名</label>
+												<input type="text" class="dialog-text" id="teaName">
+											</div>
+											<div class="dialog-div">
+												<label class="dialog-label">性别</label>
+												<input type="text" class="dialog-text" id="teaSex">
+											</div>
+											<div class="dialog-div">
+												<label class="dialog-label">院系</label>
+												<input type="text" class="dialog-text" id="teaInstitution">
+											</div>
+											<div class="dialog-div">
+												<label class="dialog-label">职称</label>
+												<input type="text" class="dialog-text" id="teaProfessional">
+											</div>
+
+										</form>
+									</div>
+
+								</div>
+							</div>
+							<div class="contents">
+								<form class="form-horizontal">
+									<div class="form-group">
+									    <label class="col-sm-2 control-label">用户名</label>
+									    <div class="col-sm-10">
+									      <p class="form-control-static" id="teacher"></p>
+									    </div>
+									</div>
+								  <div class="form-group">
+								    <label  class="col-sm-2 control-label">输入旧密码</label>
+								    <div class="col-sm-10">
+								      <input type="password" class="form-control" id="oldPassword" placeholder="OldPassword">
+								    </div>
+								  </div>
+								  <div class="form-group">
+								    <label  class="col-sm-2 control-label">输入新密码</label>
+								    <div class="col-sm-10">
+								      <input type="password" class="form-control" id="newPassword" placeholder="NewPassword">
+								    </div>
+								  </div>
+								  <div class="form-group">
+								    <div class="col-sm-offset-2 col-sm-10">
+								      <button type="button" class="btn btn-primary" id="edit-pwd">确认修改</button>
+								    </div>
+								  </div>
+								</form>
+							</div>
+							<div class="contents">
+								<h1 style="margin:6px 423px;">教学评价查看</h1>
+								<div style="height: 10px"></div>
+								<div class="am-btn-toolbars am-btn-toolbar am-kg am-cf"
+									 style="float: left;height: 50px">
+									<ul>
+										<li><input type="text"
+												   class="am-form-field am-input-sm am-input-xm" id="courseName"
+												   placeholder="输入课程名称查询" /></li>
+										<li><button id="searchCourse" type="button"
+													class="am-btn am-radius am-btn-xs am-btn-success"
+													style="margin-top: 4px;margin-right:40px;width: 100px">搜索</button></li>
+									</ul>
+								</div>
+								<table class="table table-striped table-bordered" >
+									<thead>
+									<tr>
+										<td class="active">课程编号</td>
+										<td class="active">课程名称</td>
+										<td class="active">授课班级</td>
+										<td class="active">评价分数</td>
+										<td class="active">学生留言</td>
+									</tr>
+									</thead>
+									<tbody>
+									</tbody>
+								</table>
+								<div>
+									<div id="showAllFenyeDiv" style="margin-right:20px">
+										<ul id="showAllFenye" class="am-pagination am-fr">
+										</ul>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+				</div>
+			</div>
+			<div class="footer"></div>
+
+		</div>
+
+	<script th:src="@{js/teacherindex.js}"></script>
+	<script type="text/javascript">
+	        window.onload = function main() {
+	            Tabs(".list-item", ".contents", "list-item-checked", "contents-checked");
+
+	        }
+	       
+	</script>
+	</body>
+</html>

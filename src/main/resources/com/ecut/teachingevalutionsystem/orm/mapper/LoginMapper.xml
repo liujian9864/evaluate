@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ecut.teachingevalutionsystem.orm.mapper.LoginMapper">
+    <select id="adminLogin" parameterType="com.ecut.teachingevalutionsystem.model.param.UserParam" resultType="boolean">
+        select count(*) from t_admin
+        where userName=#{userName,jdbcType=VARCHAR}
+        and
+        userPw=#{password,jdbcType=VARCHAR}
+    </select>
+    <select id="studentLogin" parameterType="com.ecut.teachingevalutionsystem.model.param.UserParam" resultType="boolean">
+        select count(*) from t_stu
+        where stu_number_id=#{userName,jdbcType=VARCHAR}
+        and
+        login_pw=#{password,jdbcType=VARCHAR}
+    </select>
+    <select id="teacherLogin" parameterType="com.ecut.teachingevalutionsystem.model.param.UserParam" resultType="boolean">
+        select count(*) from t_tea
+        where tea_number_id=#{userName,jdbcType=VARCHAR}
+        and
+        login_pw=#{password,jdbcType=VARCHAR}
+    </select>
+    <select id="selectStudentByNumberId" parameterType="String" resultType="com.ecut.teachingevalutionsystem.orm.entity.StudentEntity">
+        SELECT
+        stu_id as stuId,
+        stu_name as stuName
+        FROM t_stu
+        where stu_number_id=#{stuNumberId}
+    </select>
+    <select id="selectTeacherByNumberId" parameterType="String" resultType="com.ecut.teachingevalutionsystem.orm.entity.TeacherEntity">
+        SELECT
+        tea_id as teaId,
+        tea_name as teaName
+        FROM t_tea
+        where tea_number_id=#{teaNumberId}
+    </select>
+
+</mapper>

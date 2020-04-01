@@ -1,0 +1,351 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ecut.teachingevalutionsystem.orm.mapper.AdminMapper">
+    <select id="selectAllStudent" parameterType="com.ecut.teachingevalutionsystem.model.param.Page" resultType="com.ecut.teachingevalutionsystem.orm.entity.StudentEntity">
+        SELECT
+        stu_id as stuId,
+        stu_number_id as stuNumberId,
+        stu_name as stuName,
+        stu_sex as stuSex,
+        stu_institution as stuInstitution,
+        stu_class as stuClass
+         FROM t_stu
+        where
+        1=1
+        <if test='searchId!=null and searchId!=""'>
+            and   stu_number_id like '%${searchId}%'
+        </if>
+        <if test='searchName!=null and searchName!=""'>
+            and   stu_name like '%${searchName}%'
+        </if>
+        <if test='searchInstitution!=null and searchInstitution!=""'>
+            and   stu_institution like '%${searchInstitution}%'
+        </if>
+        <if test='searchClass!=null and searchClass!=""'>
+            and  stu_class like '%${searchClass}%'
+        </if>
+        limit ${(currentPage-1)*pageSize},${pageSize}
+    </select>
+    <!-- 查找总条数 -->
+    <select id="getAllCount" parameterType="com.ecut.teachingevalutionsystem.model.param.Page" resultType="int">
+        select count(*) from t_stu
+        where
+        1=1
+        <if test='searchId!=null and searchId!=""'>
+            and stu_number_id like '%${searchId}%'
+        </if>
+        <if test='searchName!=null and searchName!=""'>
+            and stu_name like '%${searchName}%'
+        </if>
+        <if test='searchInstitution!=null and searchInstitution!=""'>
+            and stu_institution like '%${searchInstitution}%'
+        </if>
+        <if test='searchClass!=null and searchClass!=""'>
+            and  stu_class like '%${searchClass}%'
+        </if>
+    </select>
+
+    <!--根据学号删除-->
+    <delete id="deleteStudentById" parameterType="String">
+        delete from t_stu where stu_id=#{stuId}
+    </delete>
+
+    <!--根据学号查找-->
+    <select id="selectStudentById" parameterType="String" resultType="com.ecut.teachingevalutionsystem.orm.entity.StudentEntity">
+        SELECT
+        stu_id as stuId,
+        stu_number_id as stuNumberId,
+        stu_name as stuName,
+        stu_sex as stuSex,
+        stu_institution as stuInstitution,
+        stu_class as stuClass
+        FROM t_stu
+        where stu_id=#{stuId}
+    </select>
+
+<!--    学生信息修改-->
+    <update id="updateStudent" parameterType="com.ecut.teachingevalutionsystem.orm.entity.StudentEntity">
+        update
+         t_stu
+         set
+            stu_number_id=#{stuNumberId},
+            stu_name=#{stuName},
+            stu_sex=#{stuSex},
+            stu_institution=#{stuInstitution},
+            stu_class=#{stuClass}
+          where stu_id=#{stuId}
+    </update>
+<!--    新增学生-->
+    <insert id="addStudent" parameterType="com.ecut.teachingevalutionsystem.orm.entity.StudentEntity">
+        insert into
+         t_stu
+         (  stu_id,
+            stu_number_id,
+            stu_name,
+            stu_sex,
+            stu_institution,
+            stu_class,
+            login_pw
+            )
+            values
+            (
+                #{stuId},
+                #{stuNumberId},
+                #{stuName},
+                #{stuSex},
+                #{stuInstitution},
+                #{stuClass},
+                #{loginPw}
+            )
+    </insert>
+
+<!--    管理员密码修改-->
+    <update id="editAdminPwd" parameterType="com.ecut.teachingevalutionsystem.orm.entity.Admin">
+        update
+         t_admin
+         set
+            userPw=#{newPassword}
+          where userName=#{userName} and userPw=#{oldPassword}
+    </update>
+
+    <select id="selectAllTeacher" parameterType="com.ecut.teachingevalutionsystem.model.param.Page" resultType="com.ecut.teachingevalutionsystem.orm.entity.TeacherEntity">
+        SELECT
+        tea_id as teaId,
+        tea_number_id as teaNumberId,
+        tea_name as teaName,
+        tea_sex as teaSex,
+        tea_institution as teaInstitution,
+        tea_professional as teaProfessional
+        FROM t_tea
+        where
+        1=1
+        <if test='searchId!=null and searchId!=""'>
+            and   tea_number_id like '%${searchId}%'
+        </if>
+        <if test='searchName!=null and searchName!=""'>
+            and   tea_name like '%${searchName}%'
+        </if>
+        <if test='searchInstitution!=null and searchInstitution!=""'>
+            and   tea_institution like '%${searchInstitution}%'
+        </if>
+        <if test='searchClass!=null and searchClass!=""'>
+            and  tea_professional like '%${searchClass}%'
+        </if>
+        limit ${(currentPage-1)*pageSize},${pageSize}
+    </select>
+
+    <select id="getAllTeacherCount" parameterType="com.ecut.teachingevalutionsystem.model.param.Page" resultType="int">
+        select count(*) from t_tea
+        where
+        1=1
+        <if test='searchId!=null and searchId!=""'>
+            and tea_number_id like '%${searchId}%'
+        </if>
+        <if test='searchName!=null and searchName!=""'>
+            and tea_name like '%${searchName}%'
+        </if>
+        <if test='searchInstitution!=null and searchInstitution!=""'>
+            and tea_institution like '%${searchInstitution}%'
+        </if>
+        <if test='searchClass!=null and searchClass!=""'>
+            and  tea_professional like '%${searchClass}%'
+        </if>
+    </select>
+
+    <!--根据工号删除教师-->
+    <delete id="deleteTeacherById" parameterType="String">
+        delete from t_tea where tea_id=#{teaId}
+    </delete>
+
+    <!--根据工号查找-->
+    <select id="selectTeacherById" parameterType="String" resultType="com.ecut.teachingevalutionsystem.orm.entity.TeacherEntity">
+        SELECT
+        tea_id as teaId,
+        tea_number_id as teaNumberId,
+        tea_name as teaName,
+        tea_sex as teaSex,
+        tea_institution as teaInstitution,
+        tea_professional as teaProfessional
+        FROM t_tea
+        where tea_id=#{teaId}
+    </select>
+
+    <!--    教师信息修改-->
+    <update id="updateTeacher" parameterType="com.ecut.teachingevalutionsystem.orm.entity.TeacherEntity">
+        update
+         t_tea
+         set
+            tea_number_id=#{teaNumberId},
+            tea_name=#{teaName},
+            tea_sex=#{teaSex},
+            tea_institution=#{teaInstitution},
+            tea_professional=#{teaProfessional}
+          where tea_id=#{teaId}
+    </update>
+    <!--    新增教师-->
+    <insert id="addTeacher" parameterType="com.ecut.teachingevalutionsystem.orm.entity.TeacherEntity">
+        insert into
+         t_tea
+         (  tea_id,
+            tea_number_id,
+            tea_name,
+            tea_sex,
+            tea_institution,
+            tea_professional,
+            login_pw
+            )
+            values
+            (
+                #{teaId},
+                #{teaNumberId},
+                #{teaName},
+                #{teaSex},
+                #{teaInstitution},
+                #{teaProfessional},
+                #{loginPw}
+            )
+    </insert>
+
+    <select id="selectAllCourse" parameterType="com.ecut.teachingevalutionsystem.model.param.Page" resultType="com.ecut.teachingevalutionsystem.orm.entity.CourseEntity">
+        SELECT
+        course_id as courseId,
+        course_number_id as courseNumberId,
+        course_name as courseName,
+        course_class as courseClass,
+        course_teacher as courseTeacher,
+        course_evaluate as courseEvaluate
+        FROM t_course
+        where
+        1=1
+        <if test='searchId!=null and searchId!=""'>
+            and   course_number_id like '%${searchId}%'
+        </if>
+        <if test='searchName!=null and searchName!=""'>
+            and   course_name like '%${searchName}%'
+        </if>
+        <if test='searchInstitution!=null and searchInstitution!=""'>
+            and   course_class like '%${searchInstitution}%'
+        </if>
+        <if test='searchClass!=null and searchClass!=""'>
+            and  course_teacher like '%${searchClass}%'
+        </if>
+        limit ${(currentPage-1)*pageSize},${pageSize}
+    </select>
+
+    <select id="getAllCourseCount" parameterType="com.ecut.teachingevalutionsystem.model.param.Page" resultType="int">
+        select count(*) from t_course
+        where
+        1=1
+        <if test='searchId!=null and searchId!=""'>
+            and   course_number_id like '%${searchId}%'
+        </if>
+        <if test='searchName!=null and searchName!=""'>
+            and   course_name like '%${searchName}%'
+        </if>
+        <if test='searchInstitution!=null and searchInstitution!=""'>
+            and   course_class like '%${searchInstitution}%'
+        </if>
+        <if test='searchClass!=null and searchClass!=""'>
+            and  course_teacher like '%${searchClass}%'
+        </if>
+    </select>
+
+    <!--根据课程号删除课程-->
+    <delete id="deleteCourseById" parameterType="String">
+        delete from t_course where course_id=#{courseId}
+    </delete>
+
+    <!--根据课程号查找-->
+    <select id="selectCourseById" parameterType="String" resultType="com.ecut.teachingevalutionsystem.orm.entity.CourseEntity">
+        SELECT
+        course_id as courseId,
+        course_number_id as courseNumberId,
+        course_name as courseName,
+        course_class as courseClass,
+        course_teacher as courseTeacher,
+        course_evaluate as courseEvaluate
+        FROM t_course
+        where course_id=#{courseId}
+    </select>
+
+    <!--    课程信息修改-->
+    <update id="updateCourse" parameterType="com.ecut.teachingevalutionsystem.orm.entity.CourseEntity">
+        update
+         t_course
+         set course_number_id=#{courseNumberId},course_name=#{courseName},course_class=#{courseClass},course_teacher=#{courseTeacher},course_evaluate=#{courseEvaluate}
+          where  course_id=#{courseId};
+    </update>
+    <!--    新增课程-->
+    <insert id="addCourse" parameterType="com.ecut.teachingevalutionsystem.orm.entity.CourseEntity">
+        insert into
+         t_course
+         (
+            course_id ,
+            course_number_id ,
+            course_name,
+            course_class,
+            course_teacher,
+            course_evaluate
+            )
+            values
+            (
+                #{courseId},
+                #{courseNumberId},
+                #{courseName},
+                #{courseClass},
+                #{courseTeacher},
+                #{courseEvaluate}
+            )
+    </insert>
+
+    <select id="selectAllEva" parameterType="com.ecut.teachingevalutionsystem.model.param.Page" resultType="com.ecut.teachingevalutionsystem.orm.entity.EvaGradeEntity">
+        SELECT
+        course_id as courseId
+        FROM t_course
+        where
+        course_id in (select course_id from t_course
+        where
+        1=1
+        <if test='searchId!=null and searchId!=""'>
+            and   course_number_id like '%${searchId}%'
+        </if>
+        <if test='searchName!=null and searchName!=""'>
+            and   course_name like '%${searchName}%'
+        </if>
+        <if test='searchInstitution!=null and searchInstitution!=""'>
+            and   course_class like '%${searchInstitution}%'
+        </if>
+        <if test='searchClass!=null and searchClass!=""'>
+            and  course_teacher like '%${searchClass}%'
+        </if>)
+
+        limit ${(currentPage-1)*pageSize},${pageSize}
+    </select>
+
+    <select id="getAllEvaCount" parameterType="com.ecut.teachingevalutionsystem.model.param.Page" resultType="int">
+        select count(*) from t_course
+        where
+        course_id in (select course_id from t_course
+        where
+        1=1
+        <if test='searchId!=null and searchId!=""'>
+            and   course_number_id like '%${searchId}%'
+        </if>
+        <if test='searchName!=null and searchName!=""'>
+            and   course_name like '%${searchName}%'
+        </if>
+        <if test='searchInstitution!=null and searchInstitution!=""'>
+            and   course_class like '%${searchInstitution}%'
+        </if>
+        <if test='searchClass!=null and searchClass!=""'>
+            and  course_teacher like '%${searchClass}%'
+        </if>)
+    </select>
+
+    <select id="selectEvaGradeCount" parameterType="com.ecut.teachingevalutionsystem.orm.entity.CourseEntity" resultType="String">
+        select eva_grade_count from t_grade
+        where
+        course_id=#{courseId}
+    </select>
+
+</mapper>

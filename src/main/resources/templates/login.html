@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>登录</title>
+		<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+		<!-- jQuery (Bootstrap 的所有 JavaScript 插件都依赖 jQuery，所以必须放在前边) -->
+		<script src="js/jquery-3.4.1.min.js"></script>
+		<!-- 加载 Bootstrap 的所有 JavaScript 插件。你也可以根据需要只加载单个插件。 -->
+		<script src="bootstrap/js/bootstrap.min.js"></script>
+		<script src="js/jquery-3.4.1.min.js"></script>
+		<style>
+			body{
+				margin: 0px;
+				padding: 0px;
+			}
+			.header{
+				width: 100%;
+				height: 100px;
+			}
+			.logo{
+				width: 80px;
+				height: 80px;
+				display: block;
+				float: left;
+				margin-left: 10px;
+				margin-top: 10px;
+			}
+			.header h1{
+				text-align: center;
+				line-height: 100px;
+				float: left;
+				margin-left: 20px;
+				margin-top: 0;
+				margin-bottom: 0;
+				margin-right: 0;
+				display: block;
+				font-size: 35px;
+				font-weight: bold;
+			}
+			.desc{
+				width: 222px;
+				height: 44px;
+				float: right;
+				margin-right: 10%;
+				margin-top: 28px;
+			}
+			.content{
+				width: 100%;
+				height: 500px;
+				position: relative;
+				background: url(/images/bg5.jpg) center center / cover no-repeat;
+			}
+			.login{
+				width: 300px;
+				height: 300px;
+				opacity: 0.6;
+				position: absolute;
+				top: 100px;
+				right: 10%;
+				background: rebeccapurple;
+			}
+			.title{
+				height: 50px;
+				line-height: 60px;
+				text-align: center;
+				font-size: 18px;
+				font-weight: 600;
+			}
+			.identity{
+				margin-left: 30px;
+				margin-top: 20px;
+			}
+			.account{
+				margin-left: 30px;
+				margin-top: 20px;
+			}
+			.password{
+				margin-left: 30px;
+				margin-top: 20px;
+			}
+			.login_btn{
+				width: 100%;
+				height: 40px;
+				margin-top: 20px;
+				text-align: center;
+			}
+			.login input{
+				margin-left: 10px;
+				margin-right: 5px;
+				height: 30px;
+				padding-left: 10px;
+			}
+			.identity input{
+				height: 13px;
+			}
+			.login .login_btn button {
+			    padding: 6px 52px;
+			}
+			.footer {
+			    width: 100%;
+			    background: blanchedalmond;
+			}
+			.footer p {
+			    text-align: center;
+			    height: 40px;
+			    line-height: 40px;
+			}
+		</style>
+	</head>
+	<body>
+		<div>
+			<div class="header">
+				<img src="images/ecut-logo.jpg" alt="logo"  class="logo">
+				<h1>东华理工大学</h1>
+				<img src="images/good_study.jpg" alt="" class="desc">
+			</div>
+			<div class="content">
+				<div class="login">
+				        <form action="###" id="loginForm">
+				            <div class="title">WEB教学质量评价系统</div>
+				            <div class="identity">
+				                <span>身  份</span>
+				                <input type="radio" name="identity" value="student" id="student" checked="checked"><label for="student">学生</label>
+				                <input type="radio" name="identity" value="teacher" id="teacher"><label for="teacher">教师</label>
+				                <input type="radio" name="identity" value="admin" id="admin"><label for="admin">管理员</label>
+				            </div>
+				            <div class="account">
+				                <span>账  号</span>
+				                <input type="text" name="userId" id="userId" placeholder="请输入你的工号/学号">
+				            </div>
+				            <div class="password">
+				                <span>密  码</span>
+				                <input type="password" name="password" id="pwd" placeholder="请输入你的密码">
+				            </div>
+				            <div class="login_btn">
+				                <button id="login" type="button">登录</button>
+				            </div>
+				        </form>
+				    </div>
+			</div>
+			<div class="footer">
+				<p>一东华理工大学教学评价系统</p>
+			</div>
+		</div>
+		
+		<script src="js/login.js"></script>
+	</body>
+</html>
