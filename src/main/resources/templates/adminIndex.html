@@ -267,29 +267,12 @@
 											<div class="dialog-div">
 												<label class="dialog-label">学院</label>
 												<select class="dialog-text"  id="addstuInstitution">
-													<option>请选择</option>
-													<option>软件学院</option>
-													<option>体育学院</option>
-													<option>艺术学院</option>
-													<option>文法学院</option>
-													<option>研究生学院</option>
-													<option>外国语学院</option>
-													<option>信息工程学院</option>
-													<option>地球科学学院</option>
-													<option>测绘工程学院</option>
-													<option>国防教育学院</option>
-													<option>经济与管理学院</option>
-													<option>马克思主义学院</option>
-													<option>核科学与工程学院</option>
-													<option>机械与电子工程学院</option>
-													<option>土木与建筑工程学院</option>
-													<option>水资源与环境工程学院</option>
-													<option>化学生物与材料科学学院</option>
 												</select>
 											</div>
 											<div class="dialog-div">
 												<label class="dialog-label">班级</label>
-												<input type="text" class="dialog-text" id="addstuClass">
+												<select class="dialog-text"  id="addstuClass">
+												</select>
 											</div>
 											<div class="dialog-div">
 												<button type="button" class="btn btn-primary" id="addStu">录入</button>
@@ -350,20 +333,31 @@
 										<form>
 											<input type="text" class="dialog-text" id="addCourseId" style="display: none">
 											<div class="dialog-div1">
+												<label class="dialog-label">课程名称</label>
+												<select class="dialog-text"  id="addCourseName">
+												</select>
+											</div>
+											<div class="dialog-div1">
 												<label class="dialog-label">课程编号</label>
 												<input type="text" maxlength='8' class="dialog-text" id="addCourseNumberId">
 											</div>
 											<div class="dialog-div1">
-												<label class="dialog-label">课程名称</label>
-												<input type="text" class="dialog-text" id="addCourseName">
-											</div>
-											<div class="dialog-div1">
 												<label class="dialog-label">授课班级</label>
-												<input type="text"  maxlength='7' class="dialog-text" id="addCourseClass">
+												<select class="dialog-text"  id="addCourseClass">
+												</select>
 											</div>
+<!--											<div class="dialog-div1">-->
+<!--												<label class="dialog-label">授课班级</label>-->
+<!--												<input type="text"  maxlength='7' class="dialog-text" id="addCourseClass">-->
+<!--											</div>-->
+<!--											<div class="dialog-div1">-->
+<!--												<label class="dialog-label">授课教师</label>-->
+<!--												<input type="text" class="dialog-text" id="addCourseTeacher">-->
+<!--											</div>-->
 											<div class="dialog-div1">
 												<label class="dialog-label">授课教师</label>
-												<input type="text" class="dialog-text" id="addCourseTeacher">
+												<select class="dialog-text"  id="addCourseTeacher">
+												</select>
 											</div>
 											<div class="dialog-div1">
 												<label class="dialog-label">是否评教</label>
@@ -462,29 +456,13 @@
 							<div class="dialog-div">
 								<label class="dialog-label">学院</label>
 								<select class="dialog-text"  id="stuInstitution">
-									<option>请选择</option>
-													<option>软件学院</option>
-									<option>体育学院</option>
-									<option>艺术学院</option>
-									<option>文法学院</option>
-									<option>研究生学院</option>
-									<option>外国语学院</option>
-									<option>信息工程学院</option>
-									<option>地球科学学院</option>
-									<option>测绘工程学院</option>
-									<option>国防教育学院</option>
-									<option>经济与管理学院</option>
-									<option>马克思主义学院</option>
-									<option>核科学与工程学院</option>
-									<option>机械与电子工程学院</option>
-									<option>土木与建筑工程学院</option>
-									<option>水资源与环境工程学院</option>
-									<option>化学生物与材料科学学院</option>
 								</select>
 							</div>
 							<div class="dialog-div">
 								<label class="dialog-label">班级</label>
-								<input type="text" maxlength='7' class="dialog-text" id="stuClass">
+								<select class="dialog-text"  id="stuClass">
+								</select>
+<!--								<input type="text" maxlength='7' class="dialog-text" id="stuClass">-->
 							</div>
 							<div class="dialog-div">
 								<button type="button" class="btn btn-primary" id="savedetail">更新</button>
@@ -561,20 +539,26 @@
 						<form>
 							<input type="text" class="dialog-text" id="add-CourseId" style="display: none">
 							<div class="dialog-div1">
+								<label class="dialog-label">课程名称</label>
+<!--								<input type="text" class="dialog-text" id="add-CourseName">-->
+								<select class="dialog-text"  id="add-CourseName">
+								</select>
+							</div>
+							<div class="dialog-div1">
 								<label class="dialog-label">课程编号</label>
 								<input type="text" maxlength='8' class="dialog-text" id="add-CourseNumberId">
 							</div>
 							<div class="dialog-div1">
-								<label class="dialog-label">课程名称</label>
-								<input type="text" class="dialog-text" id="add-CourseName">
-							</div>
-							<div class="dialog-div1">
 								<label class="dialog-label">授课班级</label>
-								<input type="text" maxlength='7' class="dialog-text" id="add-CourseClass">
+<!--								<input type="text" maxlength='7' class="dialog-text" id="add-CourseClass">-->
+								<select class="dialog-text"  id="add-CourseClass">
+								</select>
 							</div>
 							<div class="dialog-div1">
 								<label class="dialog-label">授课教师</label>
-								<input type="text" class="dialog-text" id="add-CourseTeacher">
+<!--								<input type="text" class="dialog-text" id="add-CourseTeacher">-->
+								<select class="dialog-text"  id="add-CourseTeacher">
+								</select>
 							</div>
 							<div class="dialog-div1">
 								<label class="dialog-label">是否评教</label>
@@ -594,10 +578,11 @@
 			</div>
 		</div>
 
-	<script th:src="@{js/adminindex.js}"></script>
-	<script th:src="@{js/adminindextea.js}"></script>
-	<script th:src="@{js/adminindexcourse.js}"></script>
-	<script th:src="@{js/adminindexeva.js}"></script>
+		<script th:src="@{js/dictionary.js}"></script>
+		<script th:src="@{js/adminindex.js}"></script>
+		<script th:src="@{js/adminindextea.js}"></script>
+		<script th:src="@{js/adminindexcourse.js}"></script>
+		<script th:src="@{js/adminindexeva.js}"></script>
 	<script type="text/javascript">
 	        window.onload = function main() {
 	            Tabs(".list-item", ".contents", "list-item-checked", "contents-checked");

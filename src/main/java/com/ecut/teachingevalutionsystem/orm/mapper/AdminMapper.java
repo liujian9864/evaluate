@@ -11,6 +11,8 @@ public interface AdminMapper {
 
     List<TeacherEntity> selectAllTeacher(Page page);
 
+    List<TeacherEntity> findAllTeacher();
+
     List<CourseEntity> selectAllCourse(Page page);
 
     List<EvaGradeEntity> selectAllEva(Page page);

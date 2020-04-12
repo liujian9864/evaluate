@@ -3,6 +3,7 @@ package com.ecut.teachingevalutionsystem.service;
 import com.ecut.teachingevalutionsystem.model.param.Page;
 import com.ecut.teachingevalutionsystem.orm.entity.*;
 import com.ecut.teachingevalutionsystem.orm.mapper.AdminMapper;
+import com.ecut.teachingevalutionsystem.orm.mapper.DistrictMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,12 +17,18 @@ public class AdminService {
     @Resource
     AdminMapper adminMapper;
 
+    @Resource
+    DistrictMapper districtMapper;
+
     public List<StudentEntity> selectAllStudent(Page page) {
         return adminMapper.selectAllStudent(page);
     }
 
     public List<TeacherEntity> selectAllTeacher(Page page) {
         return adminMapper.selectAllTeacher(page);
+    }
+    public List<TeacherEntity> findAllTeacher() {
+        return adminMapper.findAllTeacher();
     }
 
     public List<EvaGradeEntity> selectAllEva(Page page) {
@@ -84,7 +91,9 @@ public class AdminService {
     }
 
     public StudentEntity selectStudentById(String stuId) {
-        return adminMapper.selectStudentById(stuId);
+        StudentEntity studentEntity=adminMapper.selectStudentById(stuId);
+        studentEntity.setStuInstitution(districtMapper.findByName(studentEntity.getStuInstitution()).getCode());
+        return studentEntity;
     }
 
     public TeacherEntity selectTeacherById(String teaId) {
@@ -92,10 +101,13 @@ public class AdminService {
     }
 
     public CourseEntity selectCourseById(String courseId) {
-        return adminMapper.selectCourseById(courseId);
+        CourseEntity courseEntity=adminMapper.selectCourseById(courseId);
+        courseEntity.setCourseName(districtMapper.findByName(courseEntity.getCourseName()).getCode());
+        return courseEntity;
     }
 
     public boolean updateStudent(StudentEntity studentEntity) {
+        studentEntity.setStuInstitution(districtMapper.findByCode(studentEntity.getStuInstitution()).getName());
         return adminMapper.updateStudent(studentEntity);
     }
 
@@ -104,11 +116,13 @@ public class AdminService {
     }
 
     public boolean updateCourse(CourseEntity courseEntity) {
+        courseEntity.setCourseName(districtMapper.findByCode(courseEntity.getCourseName()).getName());
         return adminMapper.updateCourse(courseEntity);
     }
 
     public boolean addStudent(StudentEntity studentEntity) {
         studentEntity.setStuId(UUID.randomUUID().toString());
+        studentEntity.setStuInstitution(districtMapper.findByCode(studentEntity.getStuInstitution()).getName());
         studentEntity.setLoginPw(studentEntity.stuNumberId);
         return adminMapper.addStudent(studentEntity);
     }
@@ -121,6 +135,7 @@ public class AdminService {
 
     public boolean addCourse(CourseEntity courseEntity) {
         courseEntity.setCourseId(UUID.randomUUID().toString());
+        courseEntity.setCourseName(districtMapper.findByCode(courseEntity.getCourseName()).getName());
         return adminMapper.addCourse(courseEntity);
     }
 

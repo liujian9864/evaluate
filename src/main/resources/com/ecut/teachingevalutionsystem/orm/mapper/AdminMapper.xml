@@ -133,6 +133,11 @@
         </if>
         limit ${(currentPage-1)*pageSize},${pageSize}
     </select>
+    <select id="findAllTeacher"  resultType="com.ecut.teachingevalutionsystem.orm.entity.TeacherEntity">
+        SELECT
+        tea_name as teaName
+        FROM t_tea
+    </select>
 
     <select id="getAllTeacherCount" parameterType="com.ecut.teachingevalutionsystem.model.param.Page" resultType="int">
         select count(*) from t_tea

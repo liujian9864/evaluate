@@ -3,6 +3,7 @@ package com.ecut.teachingevalutionsystem.controller;
 import com.ecut.teachingevalutionsystem.model.param.*;
 import com.ecut.teachingevalutionsystem.orm.entity.*;
 import com.ecut.teachingevalutionsystem.service.AdminService;
+import com.ecut.teachingevalutionsystem.util.JsonResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -79,6 +80,13 @@ public class AdminController {
         pageTeacher.setCurrentPage(currentPage);
         pageTeacher.setTotalPage(page.getTotalPage());
         return pageTeacher;
+    }
+    //查找所有教师
+    @GetMapping("/findAllTeacher")
+    public JsonResult<List<TeacherEntity>> findAllTeacher(){
+
+        List<TeacherEntity> teachers= adminService.findAllTeacher();
+        return new JsonResult<>(2000,teachers);
     }
 
     //根据id删除老师
